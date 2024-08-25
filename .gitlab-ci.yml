@@ -36,7 +36,8 @@ build:
   script:
     - |
       echo "Building Docker image for ARM architecture"
-    - docker build --tag $DOCKER_IMAGE:$CI_COMMIT_TAG .
+      echo "Docker image and tag: '$DOCKER_IMAGE:$CI_COMMIT_TAG'"
+    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_TAG .
   # rules:
   #   - if: $CI_COMMIT_TAG
   # tags:
