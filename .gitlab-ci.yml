@@ -8,18 +8,20 @@ variables:
   DOCKER_IMAGE: $DOCKER_REGISTRY/a_anand_91119/gitlab-arm
   TEMP_VARIABLE: 16.11.8-ce.0
 
-update-release:
-  stage: update-release
-  script:
-    - |
-      echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
-    - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${TEMP_VARIABLE}/" RELEASE
-    - cat RELEASE
-  # rules:
-  #   - if: $CI_COMMIT_TAG 
+# update-release:
+#   stage: update-release
+#   script:
+#     - |
+#       echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
+#     - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${TEMP_VARIABLE}/" RELEASE
+#     - cat RELEASE
+#   rules:
+#     - if: $CI_COMMIT_TAG 
 
 build:
   stage: build
+  image:
+    name: $DOCKER_IMAGE
   services:
     - name: docker:dind
       alias: buildcontainer
@@ -28,6 +30,9 @@ build:
     DOCKER_HOST: tcp://buildcontainer:2375/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - docker info
+    - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASSWORD" $DOCKER_REGISTRY
   script:
     - |
       echo "Building Docker image for ARM architecture"
@@ -39,6 +44,14 @@ build:
 
 push:
   stage: push
+  services:
+    - name: docker:dind
+      alias: buildcontainer
+      entrypoint: ["dockerd-entrypoint.sh", "--tls=false"]
+  variables:
+    DOCKER_HOST: tcp://buildcontainer:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
   before_script:
     - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASSWORD" $DOCKER_REGISTRY
   script:
