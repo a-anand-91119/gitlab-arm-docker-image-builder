@@ -13,6 +13,7 @@ variables:
 update-release:
   stage: update-release
   script: |
+    - cat RELEASE
     - echo "Updating RELEASE file with tag: '$CI_COMMIT_BRANCH'"
     - echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
     - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${CI_COMMIT_BRANCH}/" RELEASE
