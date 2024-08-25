@@ -8,15 +8,15 @@ variables:
   DOCKER_IMAGE: $DOCKER_REGISTRY/a_anand_91119/gitlab-arm
   TEMP_VARIABLE: 16.11.8-ce.0
 
-# update-release:
-#   stage: update-release
-#   script:
-#     - |
-#       echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
-#     - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${TEMP_VARIABLE}/" RELEASE
-#     - cat RELEASE
-#   rules:
-#     - if: $CI_COMMIT_TAG 
+update-release:
+  stage: update-release
+  script:
+    - |
+      echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
+    - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${TEMP_VARIABLE}/" RELEASE
+    - cat RELEASE
+  rules:
+    - if: $CI_COMMIT_TAG 
 
 build:
   stage: build
@@ -36,12 +36,11 @@ build:
   script:
     - |
       echo "Building Docker image for ARM architecture"
-      echo "Docker image and tag: '$DOCKER_IMAGE:$CI_COMMIT_TAG'"
     - docker build -t $DOCKER_IMAGE:$CI_COMMIT_TAG .
-  # rules:
-  #   - if: $CI_COMMIT_TAG
-  # tags:
-  #   - saas-linux-medium-arm64
+  rules:
+    - if: $CI_COMMIT_TAG
+  dependencies:
+    - update-release
 
 push:
   stage: push
@@ -62,9 +61,7 @@ push:
     - |
       echo "Pushing Docker image to registry"
     - docker push $DOCKER_IMAGE:$CI_COMMIT_TAG
-  # rules:
-  #   - if: $CI_COMMIT_TAG
-  # tags:
-  #   - saas-linux-medium-arm64
+  rules:
+    - if: $CI_COMMIT_TAG
   dependencies:
     - build
