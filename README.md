@@ -8,7 +8,7 @@ These images can be utilized directly via `Docker` or through `docker-compose`. 
 version: '3.6'
 services:
   gitlab:
-    image: 'registry.gitlab.com/a_anand_91119/gitlab-arm:$GITLAB_IMAGE_TAG'
+    image: 'aanand91119/gitlab-arm:$GITLAB_IMAGE_TAG'
     restart: always
     container_name: gitlab
     hostname: 'gitlab.yourdomain.com'
