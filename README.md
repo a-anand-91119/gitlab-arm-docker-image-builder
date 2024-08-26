@@ -45,5 +45,5 @@ To upgrade your self-hosted instance
 ![GitLab Upgade Path from 16.8.1 to 17.3.1](docs/upgrade_path_16.8.1_to_17.3.1.png)
   
 For example, upgrading from version `16.8.1` to `17.3.1` would involve the following steps:
-    - First, upgrade from `16.8.1` to `16.11.8`, complete the migrations.
-    - Then, proceed with the upgrade from `16.11.8` to `17.3.1`.
+  - First, upgrade from `16.8.1` to `16.11.8`, complete the migrations.
+  - Then, proceed with the upgrade from `16.11.8` to `17.3.1`.
