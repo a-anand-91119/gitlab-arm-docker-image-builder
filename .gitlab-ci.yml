@@ -21,15 +21,9 @@ update-release:
 build:
   stage: build
   image:
-    name: "docker:stable"
+    name: "docker"
   services:
     - name: docker:dind
-      alias: buildcontainer
-      entrypoint: ["dockerd-entrypoint.sh", "--tls=false"]
-  variables:
-    DOCKER_HOST: tcp://buildcontainer:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
   before_script:
     - |
       echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY
