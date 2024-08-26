@@ -1,7 +1,6 @@
 stages:
   - update-release
   - build
-  - push
   
 variables:
   DOCKER_REGISTRY: registry.gitlab.com
@@ -37,33 +36,12 @@ build:
     - |
       echo "Building Docker image for ARM architecture"
     - docker build -t $DOCKER_IMAGE:$CI_COMMIT_TAG .
-  rules:
-    - if: $CI_COMMIT_TAG
-  dependencies:
-    - update-release
-  tags:
-    - armhf
-
-push:
-  stage: push
-  image:
-    name: "docker:stable"
-  services:
-    - name: docker:dind
-      alias: buildcontainer
-      entrypoint: ["dockerd-entrypoint.sh", "--tls=false"]
-  variables:
-    DOCKER_HOST: tcp://buildcontainer:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
-  before_script:
-    - |
-      echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY
-  script:
     - |
       echo "Pushing Docker image to registry"
     - docker push $DOCKER_IMAGE:$CI_COMMIT_TAG
   rules:
     - if: $CI_COMMIT_TAG
   dependencies:
-    - build
+    - update-release
+  tags:
+    - armhf
