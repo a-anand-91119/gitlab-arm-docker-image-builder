@@ -1,21 +1,10 @@
 stages:
-  - setup
   - build
   - notification
   
 variables:
   DOCKER_IMAGE: $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME
   LINK_ARTIFACT: true
-
-update-version:
-  stage: setup
-  script:
-    - |
-      echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
-    - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${CI_COMMIT_TAG}/" RELEASE
-    - cat RELEASE
-  rules:
-    - if: $CI_COMMIT_TAG 
 
 build-and-push-image:
   stage: build
@@ -34,6 +23,10 @@ build-and-push-image:
       echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY
   script:
     - |
+      echo "Updating RELEASE file with tag:'$CI_COMMIT_TAG'"
+    - sed -i "s/^RELEASE_VERSION=.*/RELEASE_VERSION=${CI_COMMIT_TAG}/" RELEASE
+    - cat RELEASE
+    - |
       echo "Building Docker image for ARM architecture"
     - docker build -t $DOCKER_IMAGE:$CI_COMMIT_TAG .
     - |
@@ -41,8 +34,6 @@ build-and-push-image:
     - docker push $DOCKER_IMAGE:$CI_COMMIT_TAG
   rules:
     - if: $CI_COMMIT_TAG
-  dependencies:
-    - update-version
   tags:
     - armhf
 
