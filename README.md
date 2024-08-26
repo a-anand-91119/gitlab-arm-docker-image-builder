@@ -1,14 +1,9 @@
 # Self-Hosted GitLab CE ARM Docker Image Builder
 
-<div align="center">
-
 [![Latest Release](https://gitlab.com/a_anand_91119/gitlab-arm/-/badges/release.svg?value_width=80)](https://gitlab.com/a_anand_91119/gitlab-arm/-/releases) ![Docker Pulls](https://img.shields.io/docker/pulls/aanand91119/gitlab-arm) ![Docker Image Size](https://img.shields.io/docker/image-size/aanand91119/gitlab-arm) ![Docker Image Version](https://img.shields.io/docker/v/aanand91119/gitlab-arm)
 
 ---
 ![GitLab Forks](https://img.shields.io/gitlab/forks/a_anand_91119/gitlab-arm) ![GitLab Stars](https://img.shields.io/gitlab/stars/a_anand_91119%2Fgitlab-arm)
-
-
-<div>
 
 
 This repository facilitates the building of Docker images for GitLab Community Edition (CE), tailored for ARM-based devices, including systems utilizing Ampere processors.
