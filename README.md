@@ -1,8 +1,8 @@
-# Self-Hosted Gitlab CE arm docker image builder
-This repository will build docker images for GitLab CE that can be used in arm devices inlcuding systems with Ampere processors.
+# Self-Hosted GitLab CE ARM Docker Image Builder
+This repository facilitates the building of Docker images for GitLab Community Edition (CE), tailored for ARM-based devices, including systems utilizing Ampere processors.
 
-## How to use these images?
-Whether you use the docker image directly or via `docker compose` is upto you. Attaching a sample docker-compose.yml file for reference on how to setup your own GitLab CE instance via docker in arm processors.
+## Usage Instructions
+These images can be utilized directly via `Docker` or through `docker-compose`. Below is an example `docker-compose.yml` file to assist in setting up a GitLab CE instance on ARM devices.
 
 ```yml
 version: '3.6'
@@ -23,26 +23,27 @@ services:
     shm_size: '256m'
 ```
 
-> Create a `.env` along with this docker compose and set the value for `GITLAB_HOME` and `GITLAB_IMAGE_TAG`.
+> Ensure you create a `.env` file alongside your `docker-compose.yml` and define the values for `GITLAB_HOME` and `GITLAB_IMAGE_TAG`.
 
 ```env
 GITLAB_HOME=/home/ubuntu/gitlab
 GITLAB_IMAGE_TAG=Any_Tag_Available_In_This_Repository
 ```
 
-## How to get a particular version of GitLab whose image is not availabe?
-If you need a version of gitlab that is not already available, just raise an issue with the exact version you need.
+## Requesting Specific GitLab Versions
+If a desired GitLab version is not available, please raise an issue specifying the exact version required, and I will accommodate the request.
 
-## Upgrading self-hosted GitLab instances
+## Upgrading Self-Hosted GitLab Instances
 To upgrade your self-hosted instance
-1. First go to [Gitlab Upgrade Path](https://gitlab-com.gitlab.io/support/toolbox/upgrade-path/?distro=docker&edition=ce)
-2. Fill in the details such as
-    - The current version of your GitLab Instance
-    - The version to which you are planning to upgrade to
-    - The edition [`Community Edition`]
-    - The distro. [`Docker`]
-3. Once filled in the website will show the upgrade path to your target version from your current version.
+1. Visit the [Gitlab Upgrade Path](https://gitlab-com.gitlab.io/support/toolbox/upgrade-path/?distro=docker&edition=ce) tool.
+2. Provide the following details:
+    - **Current version** of your GitLab instance.
+    - **Target version** for the upgrade.
+    - Select **Community Edition** as the edition.
+    - Choose **Docker** as the distribution.
+3. The tool will display the upgrade path for your desired version, as shown below.
 ![GitLab Upgade Path from 16.8.1 to 17.3.1](docs/upgrade_path_16.8.1_to_17.3.1.png)
-    - In this example the upgrade path from `16.8.1` to `17.3.1` is being shown.
-    - First we need to upgarde from `16.8.1` to `16.11.8`, start the instance finish all the migrations 
-    - And then upgrade from `16.11.8` to `17.3.1`.
+  
+For example, upgrading from version `16.8.1` to `17.3.1` would involve the following steps:
+    - First, upgrade from `16.8.1` to `16.11.8`, complete the migrations.
+    - Then, proceed with the upgrade from `16.11.8` to `17.3.1`.

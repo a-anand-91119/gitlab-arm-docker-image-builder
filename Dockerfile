@@ -30,10 +30,10 @@ RUN chmod +x /assets/*
 RUN /assets/setup
 
 # Allow to access embedded tools
-ENV PATH /opt/gitlab/embedded/bin:/opt/gitlab/bin:/assets:$PATH
+ENV PATH=/opt/gitlab/embedded/bin:/opt/gitlab/bin:/assets:$PATH
 
 # Resolve error: TERM environment variable not set.
-ENV TERM xterm
+ENV TERM=xterm
 
 # Expose web & ssh
 EXPOSE 443 80 22
