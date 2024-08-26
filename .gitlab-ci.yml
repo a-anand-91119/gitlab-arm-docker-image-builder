@@ -42,7 +42,7 @@ build:
   dependencies:
     - update-release
   tags:
-    - saas-macos-medium-m1
+    - armhf
 
 push:
   stage: push
