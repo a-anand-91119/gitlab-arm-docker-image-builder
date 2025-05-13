@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL maintainer "A Anand <a.anand.91119@gmail.com>"
+LABEL maintainer="A Anand <a.anand.91119@gmail.com>"
 SHELL ["/bin/sh", "-c"]
 ENV LANG=C.UTF-8
 
