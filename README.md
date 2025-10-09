@@ -5,6 +5,18 @@
 
 This repository facilitates the building of Docker images for GitLab Community Edition (CE), tailored for ARM-based devices, including systems utilizing Ampere processors.
 
+> [!IMPORTANT]
+>
+> I'm thrilled to announce that, starting with version 18.2.0, GitLab now officially provides ARM64 Docker images
+> \[[GitLab CE](https://hub.docker.com/r/gitlab/gitlab-ce/tags) | [GitLab EE](https://hub.docker.com/r/gitlab/gitlab-ee/tags)\].
+>
+> With GitLab now offering official support, users can benefit directly from their robust, timely, and fully supported images. Therefore, this community project is no longer necessary.
+>
+> **What this means:**
+> * **This project will no longer be maintained or updated.**
+> * All users should migrate to the official GitLab Docker images for future releases and support.
+> 
+
 ## Usage Instructions
 These images can be utilized directly via `Docker` or through `docker-compose`. Below is an example `docker-compose.yml` file to assist in setting up a GitLab CE instance on ARM devices.
 
