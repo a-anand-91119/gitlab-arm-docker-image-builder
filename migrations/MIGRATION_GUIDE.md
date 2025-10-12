@@ -257,6 +257,13 @@ gitlab-ctl restart
 docker exec gitlab gitlab-ctl tail postgresql
 ```
 
+### Container restarts due to permission errors
+
+**Solution**: Run the update-permissions command to fix the permission issue on files from the original container:
+
+```bash
+docker exec -it gitlab update-permissions
+```
 ---
 
 ## Additional Notes
