@@ -16,6 +16,8 @@ This repository facilitates the building of Docker images for GitLab Community E
 > * **This project will no longer be maintained or updated.**
 > * All users should migrate to the official GitLab Docker images for future releases and support.
 > 
+> ### Refer to the [migration guide](MIGRATION_GUIDE.md) for more information on how to migrate to the official images.
+>
 
 ## Usage Instructions
 These images can be utilized directly via `Docker` or through `docker-compose`. Below is an example `docker-compose.yml` file to assist in setting up a GitLab CE instance on ARM devices.
