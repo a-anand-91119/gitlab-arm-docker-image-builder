@@ -187,7 +187,12 @@ services:
 
 ---
 
-### Step 5: Verify and Cleanup
+### Step 5: Copy critical data
+Update the `GITLAB_HOME` variable in [migrate-data.sh](migrate-data.sh) file and run the script.
+> Please be sure to verify that the userId used in script 998 corresponds to the `polkitd` user and group. (use `ls -ln` to get the id)
+
+
+### Step 6: Verify and Cleanup
 
 1. **Test your GitLab instance**:
     - Log in using your old credentials
@@ -210,7 +215,6 @@ services:
      - '$GITLAB_HOME/logs:/var/log/gitlab'
      - '$GITLAB_HOME/data-ce:/var/opt/gitlab'
    ```
-
 ---
 
 ## Troubleshooting

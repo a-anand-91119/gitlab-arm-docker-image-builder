@@ -16,7 +16,7 @@ This repository facilitates the building of Docker images for GitLab Community E
 > * **This project will no longer be maintained or updated.**
 > * All users should migrate to the official GitLab Docker images for future releases and support.
 > 
-> ### Refer to the [migration guide](MIGRATION_GUIDE.md) for more information on how to migrate to the official images.
+> ### Refer to the [migration guide](migrations/MIGRATION_GUIDE.md) for more information on how to migrate to the official images.
 >
 
 ## Usage Instructions
